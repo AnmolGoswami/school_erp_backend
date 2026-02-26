@@ -1,9 +1,21 @@
 package com.schoolErp.jwt;
 
-import lombok.Value;
+import com.schoolErp.entity.core.Role;
+import com.schoolErp.entity.core.User;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
+
+
 public class JwtService {
 
 
@@ -13,7 +25,7 @@ public class JwtService {
     @Value("${jwt.access-token-expiration:900000}")  // 15 min
     private long accessTokenExpiration;
 
-    @Value("${jwt.refresh-token-expiration:604800000}") // 7 days
+    @Value("${jwt.refresh-token-expiration:604800000}")// 7 days
     private long refreshTokenExpiration;
 
     public String generateAccessToken(User user) {
